@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 10 – Love Horoscope</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffdee9, #b5fffc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff4081;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    label, select {
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid #ff80ab;
+      background-color: #fff0f6;
+      margin: 10px 0 20px;
+      width: 100%;
+    }
+
+    button {
+      background-color: #ff4081;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #e91e63;
+    }
+
+    .horoscope-box {
+      background-color: #fff8fc;
+      border: 2px dashed #f06292;
+      border-radius: 12px;
+      padding: 15px;
+      color: #6a1b9a;
+      font-size: 1rem;
+      min-height: 80px;
+      margin-top: 20px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .back-btn {
+      background-color: #9c27b0;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔮 Day 10 – Your Custom Love Horoscope 💖</h1>
+    <label for="zodiac">Choose Your Zodiac Sign:</label>
+    <select id="zodiac">
+      <option value="" disabled selected>Select</option>
+      <option value="aries">♈ Aries</option>
+      <option value="taurus">♉ Taurus</option>
+      <option value="gemini">♊ Gemini</option>
+      <option value="cancer">♋ Cancer</option>
+      <option value="leo">♌ Leo</option>
+      <option value="virgo">♍ Virgo</option>
+      <option value="libra">♎ Libra</option>
+      <option value="scorpio">♏ Scorpio</option>
+      <option value="sagittarius">♐ Sagittarius</option>
+      <option value="capricorn">♑ Capricorn</option>
+      <option value="aquarius">♒ Aquarius</option>
+      <option value="pisces">♓ Pisces</option>
+    </select>
+
+    <button onclick="showHoroscope()">Reveal My Horoscope ✨</button>
+
+    <div id="result" class="horoscope-box"></div>
+
+    <a href="index.html"><button class="back-btn">⬅ Back</button></a>
+  </div>
+
+  <script>
+    const horoscopes = {
+      aries: "Today, your charm is at max level! Someone’s heart is definitely melting. ❤️",
+      taurus: "You’re radiating love energy — expect surprise cuddles soon! 🧸",
+      gemini: "Flirty glances and sweet texts are in your stars. 💌",
+      cancer: "Your soft side is stealing hearts today. Don’t be surprised by extra affection! 🥰",
+      leo: "Bold moves bring big love! Roar your heart out. 🦁💖",
+      virgo: "Someone appreciates your thoughtful gestures — keep being you. ✨",
+      libra: "Balance and beauty surround your love life. Maybe plan a date? 🎡",
+      scorpio: "Your intensity is magnetic. Get ready for deep conversations. 🔥",
+      sagittarius: "Adventures of the heart await. Time for a new cute memory! 🌈",
+      capricorn: "You’re grounding someone with love and loyalty. Stay steady. 💞",
+      aquarius: "Your quirks are your power — love follows uniqueness. 🎇",
+      pisces: "You’re dreamy and lovable — a romantic moment is swimming your way. 🐠💕"
+    };
+
+    function showHoroscope() {
+      const sign = document.getElementById("zodiac").value;
+      const resultBox = document.getElementById("result");
+
+      if (!sign) {
+        resultBox.textContent = "Please choose your zodiac sign! 🌙";
+        return;
+      }
+
+      const message = horoscopes[sign];
+      resultBox.textContent = "";
+      
+      let i = 0;
+      const typing = setInterval(() => {
+        if (i < message.length) {
+          resultBox.textContent += message[i];
+          i++;
+        } else {
+          clearInterval(typing);
+        }
+      }, 40);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,478 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to right, #fff0f5, #ffe4e1);
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #ff4d6d;
+}
+
+.subheading {
+  text-align: center;
+  margin-top: -10px;
+  font-size: 1.1rem;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.section {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1;
+  min-width: 250px;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar-table th,
+.calendar-table td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.day-btn {
+  background-color: #ffdd99;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.day-btn:hover {
+  background-color: #ffc966;
+}
+
+textarea {
+  width: 100%;
+  min-height: 60px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+body.retro-game {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  background: #000 url('https://www.transparenttextures.com/patterns/pixel-weave.png');
+  color: #0ff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-screen {
+  text-align: center;
+  padding: 30px;
+  border: 4px solid #0ff;
+  background: #111;
+  border-radius: 16px;
+  max-width: 600px;
+  box-shadow: 0 0 20px #0ff;
+}
+
+.title {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.dialog-box {
+  background: #000;
+  border: 3px solid #0ff;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 120px;
+  margin-bottom: 20px;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: #0ff;
+}
+
+.game-btn {
+  font-family: 'Press Start 2P', cursive;
+  padding: 12px 20px;
+  font-size: 0.6rem;
+  background-color: #0ff;
+  color: #000;
+  border: none;
+  margin: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #0ff;
+}
+
+.game-btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.back-btn {
+  background-color: #f0f;
+  color: #000;
+}
+
+.back-btn:hover {
+  background-color: #fff;
+}
+.day3-puzzle {
+  background: #fef6f9;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 30px;
+}
+
+.title {
+  font-size: 2.2rem;
+  color: #ff3399;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.puzzle-board {
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.puzzle-piece {
+  width: 100px;
+  height: 100px;
+  background-size: 300px 300px;
+  cursor: grab;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.back-btn {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #ff3399;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.day4-theme {
+  background: linear-gradient(120deg, #fbeaff, #ffe6f7);
+  font-family: 'Courier New', monospace;
+  color: #99004d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.typewriter-box h1 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+#typewriter {
+  font-size: 1.4rem;
+  white-space: pre-wrap;
+  border-right: 2px solid #99004d;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { border-color: #99004d; }
+  50% { border-color: transparent; }
+}
+.day5-sky {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(#000015, #000);
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.title {
+  margin-top: 20px;
+  font-size: 2rem;
+  color: #ffccff;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.sky {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 150px);
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #fff, #ffccff);
+  border-radius: 50%;
+  animation: twinkle 2s infinite;
+  cursor: pointer;
+}
+
+.message-bubble {
+  position: absolute;
+  background: #fff;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  max-width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transform: translateY(-40px);
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(0px); }
+  to { opacity: 1; transform: translateY(-40px); }
+}
+
+.back-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff3399;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.day6-theme {
+  background: radial-gradient(circle, #120032, #000);
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.title-glow {
+  font-size: 2.7rem;
+  color: #ffccff;
+  text-shadow: 0 0 15px #ff66ff, 0 0 30px #cc00cc;
+  font-family: 'Pacifico', cursive;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #eee;
+}
+
+.door-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.door {
+  width: 80px;
+  height: 120px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.door-front, .door-back {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  transition: transform 0.6s;
+  position: absolute;
+}
+
+.door-front {
+  background-color: #ff66cc;
+  transform: rotateY(0deg);
+}
+
+.door-back {
+  background-color: #66ffcc;
+  transform: rotateY(180deg);
+}
+
+.door.clicked .door-front {
+  transform: rotateY(180deg);
+}
+
+.door.clicked .door-back {
+  transform: rotateY(360deg);
+}
+
+.message-box {
+  max-width: 550px;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  padding: 20px;
+  background: #fff;
+  color: #222;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+  display: none;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+body.day7-theme {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to top right, #ffe6f0, #fff0f5);
+  font-family: 'Comic Sans MS', cursive;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin: 30px 20px 10px;
+  color: #ff3399;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.balloon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+}
+
+.balloon {
+  width: 80px;
+  height: 100px;
+  background: radial-gradient(circle at 30% 30%, #ff66cc, #cc0066);
+  border-radius: 50% 50% 45% 45%;
+  position: relative;
+  cursor: pointer;
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.balloon:after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 30px;
+  background-color: #444;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.message {
+  font-size: 1.2rem;
+  color: #660033;
+  margin-top: 20px;
+  display: none;
+}
+
+.final-message {
+  font-size: 1.5rem;
+  color: #ff0066;
+  margin-top: 30px;
+  display: none;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.back-btn {
+  margin: 40px auto;
+  padding: 12px 24px;
+  background-color: #ff3399;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}

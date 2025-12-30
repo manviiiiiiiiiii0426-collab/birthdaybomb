@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>27 Moments of Us – @ayan.xoxo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito', sans-serif;
+    }
+    body {
+      background: #fafafa;
+      color: #333;
+    }
+    .header {
+      background: #fff;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #dbdbdb;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .username {
+      font-weight: 600;
+      font-size: 1.2em;
+    }
+    .music-btn {
+      font-size: 1.3em;
+      cursor: pointer;
+    }
+    .profile {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .dp {
+      width: 80px;
+      height: 80px;
+      background: #ccc;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+    .stats {
+      display: flex;
+      gap: 20px;
+    }
+    .stats div {
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 10px;
+    }
+    .post {
+      background: #fff;
+      padding: 10px;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 0.9em;
+      position: relative;
+    }
+    .icons {
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+    .post:hover {
+      background: #ffe0ec;
+    }
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="username">@ayan.xoxo</div>
+    <div class="music-btn" onclick="toggleMusic()">🎵</div>
+  </div>
+  <div class="profile">
+    <div class="dp"></div>
+    <div class="stats">
+      <div><strong>27</strong><br>Posts</div>
+      <div><strong>270</strong><br>Followers</div>
+      <div><strong>27</strong><br>Following</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="post">That voice note > therapy 💌🎧 <div class="icons">❤️ 💬</div></div>
+    <div class="post">He ghosted everyone but replied to me 🫶💬 <div class="icons">❤️ 💬</div></div>
+    <div class="post">3 AM convos that fixed my mood 🌙🗨️ <div class="icons">❤️ 💬</div></div>
+    <div class="post">His eye rolls > butterflies 🦋🙄 <div class="icons">❤️ 💬</div></div>
+    <div class="post">Virtual coffee dates hit different ☕💻 <div class="icons">❤️ 💬</div></div>
+    <div class="post">When he texts first 🥹💭 <div class="icons">❤️ 💬</div></div>
+    <div class="post">Still waiting for that one surprise 🙃🎁 <div class="icons">❤️ 💬</div></div>
+    <div class="post">He said ‘you up?’ and I stayed up all night 💬🫣 <div class="icons">❤️ 💬</div></div>
+    <div class="post">Teddy bear mood unlocked 🧸💤 <div class="icons">❤️ 💬</div></div>
+    <div class="post">Caution: He’s addictive 🚫🧠 <div class="icons">❤️ 💬</div></div>
+    <div class="post">His rants? My fav playlist 🔁🎙️ <div class="icons">❤️ 💬</div></div>
+    <div class="post">Someone tell him he's cute when mad 😡❤️ <div class="icons">❤️ 💬</div></div>
+    <div class="post">He never told me his birthday so now he gets 31 days of chaos 🎉🔥 <div class="icons">❤️ 💬</div></div>
+    <div class="post">Distance can’t handle this kind of cuteness ✈️💘 <div class="icons">❤️ 💬</div></div>
+    <div class="post">His ‘hmm’ has 7 different meanings. I know all. 📖💬 <div class="icons">❤️ 💬</div></div>
+    <div class="post">27 and still single? I’ll fix that 🤭🎂 <div class="icons">❤️ 💬</div></div>
+    <div class="post">My fav place = His last seen 😍📱 <div class="icons">❤️ 💬</div></div>
+    <div class="post">The way he types ‘hehe’ >> 💓⌨️ <div class="icons">❤️ 💬</div></div>
+    <div class="post">Love language: Confused texting 💌🤷‍♀️ <div class="icons">❤️ 💬</div></div>
+    <div class="post">He doesn't flirt. He just exists. 🚶‍♂️🔥 <div class="icons">❤️ 💬</div></div>
+    <div class="post">Fell for a guy who didn’t even tell me his birthday 🤡🧁 <div class="icons">❤️ 💬</div></div>
+    <div class="post">Plot twist: He’s the main character 🎬💘 <div class="icons">❤️ 💬</div></div>
+    <div class="post">His sleepy voice deserves an award 💤🏆 <div class="icons">❤️ 💬</div></div>
+    <div class="post">He’s annoying. I’m obsessed. It works. 🧩🧠 <div class="icons">❤️ 💬</div></div>
+    <div class="post">His ‘wyd’ hits like a love song 🎶❤️ <div class="icons">❤️ 💬</div></div>
+    <div class="post">He said ‘I’m not cute’... block button shaking 😤🚫 <div class="icons">❤️ 💬</div></div>
+    <div class="post">Happy 27th, Mr. Ayan 🎉💌 Here’s your entire fan feed 💋 <div class="icons">❤️ 💬</div></div>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/22/audio_a16f719b17.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+    let isPlaying = false;
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+      } else {
+        music.play();
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
+</body>
+</html>

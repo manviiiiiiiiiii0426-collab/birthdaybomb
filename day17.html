@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 17 – Unlock a Feeling</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top left, #ffd6ec, #fef3f8);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #ff3385;
+      text-shadow: 0 0 10px rgba(255, 0, 128, 0.2);
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 30px;
+      max-width: 600px;
+      width: 90%;
+      margin-top: 20px;
+    }
+
+    .icon {
+      font-size: 2.5rem;
+      cursor: pointer;
+      padding: 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .icon:hover {
+      transform: scale(1.2);
+      background-color: #fff0f7;
+    }
+
+    .message-box {
+      margin-top: 30px;
+      padding: 20px 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      display: none;
+      max-width: 400px;
+      animation: fadeIn 0.6s ease;
+      color: #333;
+      font-size: 1.1em;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .back-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #ff3399;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background-color: #ff0077;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔐 Unlock a Feeling</h1>
+
+  <div class="icon-grid">
+    <div class="icon" data-message="This star shines half as bright as your smile ✨">⭐</div>
+    <div class="icon" data-message="When you talk, the world sort of fades out. 🔊">🔊</div>
+    <div class="icon" data-message="That one memory? It still makes me grin 🎈">🎈</div>
+    <div class="icon" data-message="You're oddly comforting. Like warm chai on a rainy day ☕">☕</div>
+    <div class="icon" data-message="A piece of my puzzle? You probably are 🧩">🧩</div>
+  </div>
+
+  <div class="message-box" id="messageBox"></div>
+
+  <button class="back-btn" onclick="location.href='index.html'">⬅ Back</button>
+
+  <script>
+    const icons = document.querySelectorAll('.icon');
+    const messageBox = document.getElementById('messageBox');
+
+    icons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        const msg = icon.getAttribute('data-message');
+        messageBox.textContent = msg;
+        messageBox.style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Letter from the Stars</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to top, #0a0f2c, #1a2252);
+      font-family: 'Courier New', Courier, monospace;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .terrace {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 30%;
+      background: #1f1f2e;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+    }
+
+    .person {
+      position: absolute;
+      bottom: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 120px;
+      background: #333;
+      border-radius: 30px;
+    }
+
+    .star {
+      position: absolute;
+      top: 20%;
+      left: -100px;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #fff, #f0f0f0);
+      border-radius: 50%;
+      animation: shoot 4s ease-in-out forwards;
+    }
+
+    @keyframes shoot {
+      0% { left: -100px; top: 20%; }
+      50% { left: 50%; top: 40%; }
+      100% { left: 45%; top: 45%; }
+    }
+
+    .letter {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 500px;
+      background: rgba(255,255,255,0.05);
+      border: 1px dashed #aaa;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+      color: #ddd;
+      font-size: 1rem;
+      line-height: 1.6;
+      backdrop-filter: blur(4px);
+    }
+
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid #fff;
+      white-space: pre-wrap;
+      animation: typing 6s steps(60, end) 1s 1 normal both,
+                 blink .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .ayan-younger {
+      position: absolute;
+      top: 30%;
+      right: 10%;
+      width: 100px;
+      height: 100px;
+      background: url('https://i.imgur.com/2dtG2UR.png') center/cover no-repeat;
+      display: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    button {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      color: #111;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .person {
+        height: 80px;
+        width: 40px;
+      }
+      .ayan-younger {
+        width: 80px;
+        height: 80px;
+        top: 20%;
+        right: 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="star" id="star"></div>
+    <div class="terrace"></div>
+    <div class="person"></div>
+    <div class="letter" id="letter1">
+      <div id="text1" class="typewriter"></div>
+    </div>
+    <div class="letter" id="letter2">
+      <div id="text2" class="typewriter"></div>
+    </div>
+    <div class="ayan-younger" id="ayanImg"></div>
+    <button id="openLetter">Open First Letter</button>
+  </div>
+
+  <script>
+    const letter1 = document.getElementById("letter1");
+    const letter2 = document.getElementById("letter2");
+    const btn = document.getElementById("openLetter");
+    const text1 = document.getElementById("text1");
+    const text2 = document.getElementById("text2");
+    const ayanImg = document.getElementById("ayanImg");
+
+    const msg1 = `Hey Ayan, remember me? I am the junior you – the one that used to sneak outside just to stare at the stars and talk to them. Damn, it was so peaceful. I know you must be missing those times...
+
+And guess what? I saw this star travelling, and they say light years are longer than the years we follow, so I’m handing him this letter to pass on to you.
+
+Life might get tough, people might come and go, but always remember – you’re special for being who you are. I’ll always be there within you, just don’t forget me in the midst of adulthood. 
+~ the younger you`;
+
+    const msg2 = `Hey buddy, it’s been quite long since we chatted. You’ve gotten quite busy with life, it seems.
+
+But we remember every late night conversation you had with us. We really miss your company.
+
+Now that you’ve turned 27, we want you to know – your life is more magical than you think. We reflect your childhood. Adulting is hard, but we’ve got your back. Always. 
+~Your dearest stars`;
+
+    let letterOpened = false;
+
+    btn.addEventListener("click", () => {
+      if (!letterOpened) {
+        letter1.style.display = "block";
+        text1.textContent = msg1;
+        ayanImg.style.display = "block";
+        btn.textContent = "Open Second Letter";
+        letterOpened = true;
+      } else {
+        letter1.style.display = "none";
+        letter2.style.display = "block";
+        text2.textContent = msg2;
+        btn.style.display = "none";
+        ayanImg.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

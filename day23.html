@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 23 – Post-It Wall</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: radial-gradient(circle at 30% 30%, #ffe6f0, #ff99cc, #660033);
+      animation: gradientShift 15s ease infinite;
+      background-size: 400% 400%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 15px;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px #000;
+    }
+
+    h2.subtext {
+      font-weight: normal;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      color: #fff7;
+      text-align: center;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .note {
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .note-inner {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .note:hover .note-inner {
+      transform: rotateY(180deg);
+    }
+
+    .note-front, .note-back {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .note-front {
+      background-color: var(--color);
+      color: #333;
+    }
+
+    .note-back {
+      background-color: #fff;
+      color: #111;
+      transform: rotateY(180deg);
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: #ff3399;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .back-btn:hover {
+      background: #e60073;
+    }
+
+    /* Decorative floating dots */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 10s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateY(-200px) scale(1.2);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>📌 Day 23 – Post-It Wall</h1>
+  <h2 class="subtext">Little thoughts I've had about you 💭</h2>
+
+  <div class="board" id="board"></div>
+
+  <button class="back-btn" onclick="location.href='index.html'">⬅ Back</button>
+
+  <!-- Decorative bubbles -->
+  <div class="bubble" style="width:60px;height:60px;left:20%;top:80%;animation-delay:0s;"></div>
+  <div class="bubble" style="width:40px;height:40px;left:60%;top:85%;animation-delay:2s;"></div>
+  <div class="bubble" style="width:50px;height:50px;left:75%;top:90%;animation-delay:4s;"></div>
+  <div class="bubble" style="width:30px;height:30px;left:35%;top:95%;animation-delay:1s;"></div>
+
+  <script>
+    const thoughts = [
+      "The Model appearance that you've got.. 😩",
+      "Sometimes I remember your voice and smile.",
+      "I call you ‘buddhu’ like it’s a compliment 😜",
+      "Your silence is sometimes too loud 😅",
+      "I end up dreaming of you, but you scare me in my dreams 💤",
+      "You make me laugh. Stupidly. Silently. Randomly.",
+      "You're weird. But in my kinda way. 😏",
+      "Do you even know how much space you take in my head?",
+      "I was NOT ready to like you this much. 💀",
+      "You: *says anything* → My brain: *stores it forever*"
+    ];
+
+    const colors = ["#fdfd96", "#ffb7b2", "#c1f0f6", "#caffbf", "#ffd6a5", "#ffc6ff", "#e0bbff"];
+
+    const board = document.getElementById("board");
+
+    thoughts.forEach(thought => {
+      const note = document.createElement("div");
+      note.className = "note";
+
+      const inner = document.createElement("div");
+      inner.className = "note-inner";
+
+      const front = document.createElement("div");
+      front.className = "note-front";
+      front.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+      front.textContent = "Tap Me!";
+
+      const back = document.createElement("div");
+      back.className = "note-back";
+      back.textContent = thought;
+
+      inner.appendChild(front);
+      inner.appendChild(back);
+      note.appendChild(inner);
+      board.appendChild(note);
+    });
+  </script>
+</body>
+</html>
+
+
+
+

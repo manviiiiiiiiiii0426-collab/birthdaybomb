@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 26 – Love Maze</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to right, #ffc0cb, #d4f0ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #ff1493;
+      margin-bottom: 20px;
+    }
+
+    .maze {
+      display: grid;
+      grid-template-columns: repeat(10, 40px);
+      grid-template-rows: repeat(10, 40px);
+      gap: 2px;
+      margin-bottom: 20px;
+    }
+
+    .cell {
+      width: 40px;
+      height: 40px;
+      background-color: #ff66b2;
+      border-radius: 6px;
+    }
+
+    .path {
+      background-color: #fff;
+    }
+
+    .heart {
+      width: 100%;
+      height: 100%;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+    }
+
+    .house {
+      width: 100%;
+      height: 100%;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #message {
+      font-size: 20px;
+      font-weight: bold;
+      color: green;
+      margin-top: 10px;
+    }
+
+    .back-btn {
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Day 26 – Love Maze Challenge 💘</h1>
+  <div class="maze" id="maze"></div>
+  <div id="message"></div>
+  <button class="back-btn" onclick="window.history.back()">← Back</button>
+
+  <script>
+    const layout = [
+      [1,1,1,1,1,1,1,1,1,1],
+      [1,0,0,0,1,0,0,0,0,1],
+      [1,0,1,0,1,0,1,1,0,1],
+      [1,0,1,0,0,0,0,1,0,1],
+      [1,0,1,1,1,1,0,1,0,1],
+      [1,0,0,0,0,1,0,0,0,1],
+      [1,1,1,1,0,1,1,1,0,1],
+      [1,0,0,1,0,0,0,1,0,1],
+      [1,0,1,1,1,1,0,1,0,1],
+      [1,1,1,1,1,1,0,1,0,1]
+    ];
+
+    const maze = document.getElementById("maze");
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.draggable = true;
+    heart.textContent = "💖";
+
+    const house = document.createElement("div");
+    house.className = "house";
+    house.textContent = "🏠";
+
+    const start = { x: 1, y: 1 };
+    const end = { x: 8, y: 9 };
+
+    let dragged;
+
+    layout.forEach((row, y) => {
+      row.forEach((cell, x) => {
+        const div = document.createElement("div");
+        div.classList.add("cell");
+        if (cell === 0) div.classList.add("path");
+        div.dataset.x = x;
+        div.dataset.y = y;
+
+        if (x === start.x && y === start.y) {
+          div.appendChild(heart);
+        }
+
+        if (x === end.x && y === end.y) {
+          div.appendChild(house);
+          div.classList.add("path");
+        }
+
+        div.addEventListener("dragover", (e) => {
+          e.preventDefault();
+        });
+
+        div.addEventListener("drop", (e) => {
+          if (!div.classList.contains("path")) return;
+          const dropX = +div.dataset.x;
+          const dropY = +div.dataset.y;
+          // Restrict only to adjacent movement
+          const dx = Math.abs(dropX - dragged.x);
+          const dy = Math.abs(dropY - dragged.y);
+          if ((dx + dy === 1)) {
+            div.appendChild(heart);
+            dragged.x = dropX;
+            dragged.y = dropY;
+
+            if (dropX === end.x && dropY === end.y) {
+              document.getElementById("message").textContent = "Yay! The heart reached home 🏡💗";
+            }
+          }
+        });
+
+        maze.appendChild(div);
+      });
+    });
+
+    heart.addEventListener("dragstart", () => {
+      dragged = { ...start };
+      const parent = heart.parentElement;
+      dragged.x = +parent.dataset.x;
+      dragged.y = +parent.dataset.y;
+    });
+  </script>
+
+</body>
+</html>
+
+

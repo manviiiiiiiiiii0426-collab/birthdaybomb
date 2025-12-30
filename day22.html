@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 22 – Secret Code</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffe3ec, #ccf2ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: #e91e63;
+      margin-bottom: 20px;
+    }
+
+    input[type="password"] {
+      padding: 12px;
+      font-size: 1rem;
+      border: 2px solid #e91e63;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d81b60;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    .success {
+      display: none;
+      margin-top: 40px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .success h2 {
+      color: #4caf50;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .success p {
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background-color: #999;
+    }
+
+    .back-btn:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔐 Day 22 – Secret Code Time</h1>
+  <input type="password" id="codeInput" placeholder="Enter your code..."/>
+  <br/>
+  <button onclick="checkCode()">Unlock</button>
+  <div class="error" id="errorMsg"></div>
+
+  <div class="success" id="successMessage">
+    <h2>🎉 You did it!</h2>
+    <p>Of course you'd remember. You always surprise me ❤️</p>
+  </div>
+
+  <button class="back-btn" onclick="location.href='index.html'">⬅ Back</button>
+
+  <script>
+    const correctCode = "0722"; // change to anything
+    function checkCode() {
+      const input = document.getElementById("codeInput").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+      const successMsg = document.getElementById("successMessage");
+
+      if (input === correctCode) {
+        errorMsg.textContent = "";
+        successMsg.style.display = "block";
+      } else {
+        errorMsg.textContent = "Oops! That's not the code... try again?";
+        successMsg.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

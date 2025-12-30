@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 15 – Love Forecast</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top, #a1c4fd, #c2e9fb);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #333;
+    }
+
+    h1 {
+      margin: 40px 0 10px;
+      font-size: 2.5em;
+      color: #ff3399;
+      text-shadow: 0 0 6px #fff;
+    }
+
+    .forecast-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      max-width: 1000px;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #ffffffc5;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      padding: 25px 20px;
+      width: 220px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .emoji {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .desc {
+      font-size: 0.95em;
+      color: #555;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 100%;
+      }
+    }
+
+    .back-btn {
+      margin: 40px 0 30px;
+      padding: 10px 24px;
+      background-color: #ff66b2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .back-btn:hover {
+      background-color: #ff3399;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌤️ Today’s Love Forecast</h1>
+
+  <div class="forecast-container" id="forecast"></div>
+
+  <a href="index.html">
+    <button class="back-btn">⬅ Back</button>
+  </a>
+
+  <script>
+    const forecasts = [
+      {
+        emoji: "🌤️",
+        title: "Flirty with a Chance of Blushing",
+        desc: "Expect smiles and sudden compliments all day!"
+      },
+      {
+        emoji: "🌧️",
+        title: "Drizzle of Sweet Nothings",
+        desc: "A light drizzle of affectionate texts and whispers."
+      },
+      {
+        emoji: "⛈️",
+        title: "Storm of Kisses",
+        desc: "Warning: Hug tornadoes and cuddle lightning ahead!"
+      },
+      {
+        emoji: "🌈",
+        title: "Rainbow After Teasing",
+        desc: "Some playful banter followed by melting stares."
+      },
+      {
+        emoji: "🌙",
+        title: "Nighttime Cozy Chill",
+        desc: "Perfect conditions for virtual cuddles and soft talks."
+      },
+      {
+        emoji: "☀️",
+        title: "High Confidence Pressure",
+        desc: "You’re glowing today. Confidence level: 200%!"
+      }
+    ];
+
+    const container = document.getElementById("forecast");
+
+    forecasts.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="emoji">${item.emoji}</div>
+        <div class="title">${item.title}</div>
+        <div class="desc">${item.desc}</div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>

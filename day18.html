@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 18 – Love Bingo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fff0f5, #ffe0ec);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      color: #e60073;
+      margin-bottom: 20px;
+      font-size: 2.2rem;
+      text-shadow: 0 0 8px rgba(255, 0, 100, 0.2);
+    }
+
+    .bingo-board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-gap: 10px;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: white;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      font-size: 0.9rem;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .cell.active {
+      background: #ff4da6;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .popup {
+      margin-top: 25px;
+      padding: 15px 25px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: none;
+      font-size: 1.1em;
+      color: #ff3385;
+      max-width: 300px;
+    }
+
+    .back-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #ff3399;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background-color: #ff0077;
+    }
+
+    @media screen and (max-width: 500px) {
+      .bingo-board {
+        grid-template-columns: repeat(3, 90px);
+      }
+      .cell {
+        width: 90px;
+        height: 90px;
+        font-size: 0.8rem;
+        padding: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💘 Day 18 – Love Bingo 💘</h1>
+
+  <div class="bingo-board" id="board">
+    <div class="cell">Sings badly</div>
+    <div class="cell">Always late</div>
+    <div class="cell">Smiles like trouble</div>
+    <div class="cell">Talks too much</div>
+    <div class="cell active">💖 Free Spot 💖</div>
+    <div class="cell">Oddly sweet</div>
+    <div class="cell">Night owl</div>
+    <div class="cell">Eye contact game strong</div>
+    <div class="cell">Voice = weakness</div>
+  </div>
+
+  <div class="popup" id="popup">BINGO! Looks like someone’s lovable in every way 💌</div>
+
+  <button class="back-btn" onclick="location.href='index.html'">⬅ Back</button>
+
+  <script>
+    const cells = document.querySelectorAll('.cell');
+    const popup = document.getElementById('popup');
+
+    const winPatterns = [
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+      [0,4,8],
+      [2,4,6]
+    ];
+
+    cells.forEach((cell, index) => {
+      if (!cell.classList.contains("active")) {
+        cell.addEventListener('click', () => {
+          cell.classList.toggle('active');
+          checkWin();
+        });
+      }
+    });
+
+    function checkWin() {
+      for (let pattern of winPatterns) {
+        if (pattern.every(i => cells[i].classList.contains('active'))) {
+          popup.style.display = 'block';
+          return;
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

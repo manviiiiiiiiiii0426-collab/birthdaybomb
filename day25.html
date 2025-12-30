@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Day 25 – Draw a Heart</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #fce4ec, #f8bbd0);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 20px;
+      color: #d81b60;
+      text-shadow: 0 0 5px #fff;
+    }
+
+    #drawCanvas {
+      border: 2px solid #d81b60;
+      background: #fff;
+      border-radius: 10px;
+      touch-action: none;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 1.4em;
+      color: #880e4f;
+      background: #fff0f5;
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: none;
+      box-shadow: 0 0 10px #f06292;
+    }
+
+    .back-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: #f06292;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background: #ec407a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Day 25 – Draw a Heart 💗</h1>
+  <canvas id="drawCanvas" width="400" height="400"></canvas>
+  <div id="message">Okay Picasso... But I still like the one you drew on my heart better 💖</div>
+
+  <button class="back-btn" onclick="location.href='index.html'">⬅ Back</button>
+
+  <script>
+    const canvas = document.getElementById('drawCanvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    function drawHeartGuide() {
+      ctx.save();
+      ctx.translate(200, 220);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(0, -100, -100, -100, -100, 0);
+      ctx.bezierCurveTo(-100, 80, 0, 100, 0, 160);
+      ctx.bezierCurveTo(0, 100, 100, 80, 100, 0);
+      ctx.bezierCurveTo(100, -100, 0, -100, 0, 0);
+      ctx.strokeStyle = '#f8bbd0';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    drawHeartGuide();
+
+    canvas.addEventListener('mousedown', () => drawing = true);
+    canvas.addEventListener('mouseup', () => {
+      drawing = false;
+      checkDrawing();
+    });
+    canvas.addEventListener('mousemove', draw);
+
+    canvas.addEventListener('touchstart', () => drawing = true);
+    canvas.addEventListener('touchend', () => {
+      drawing = false;
+      checkDrawing();
+    });
+    canvas.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      draw({ clientX: touch.clientX, clientY: touch.clientY });
+    }, { passive: false });
+
+    function draw(e) {
+      if (!drawing) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX || e.touches?.[0].clientX) - rect.left;
+      const y = (e.clientY || e.touches?.[0].clientY) - rect.top;
+
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = '#d81b60';
+      ctx.fill();
+    }
+
+    function checkDrawing() {
+      const imgData = ctx.getImageData(100, 120, 200, 200);
+      let count = 0;
+
+      for (let i = 0; i < imgData.data.length; i += 4) {
+        if (imgData.data[i + 0] === 216 && imgData.data[i + 1] === 27 && imgData.data[i + 2] === 96) {
+          count++;
+        }
+      }
+
+      if (count > 800) {
+        document.getElementById("message").style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>

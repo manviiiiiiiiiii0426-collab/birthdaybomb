@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 29 - Heartbeat Detector</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffccff);
+      background-image: url('https://www.transparenttextures.com/patterns/hearts.png');
+      background-size: contain;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 2.5rem;
+      color: #d6336c;
+    }
+
+    #day29 {
+      margin-top: 10px;
+      font-size: 1.5rem;
+      color: #8e005f;
+      background-color: #ffe0f0;
+      padding: 8px 20px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    #heart {
+      font-size: 6rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin-top: 80px;
+      z-index: 2;
+    }
+
+    #heart:active {
+      transform: scale(1.1);
+    }
+
+    #message {
+      margin-top: 40px;
+      font-size: 1.2rem;
+      color: #6d004c;
+      min-height: 50px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    #finalMessage {
+      display: none;
+      font-size: 1.5rem;
+      color: #d6336c;
+      text-align: center;
+      margin-top: 30px;
+      animation: pop 0.5s ease-in-out;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    #backButton {
+      margin-top: 40px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff99cc;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    #backButton:hover {
+      background-color: #ff66a3;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      #heart {
+        font-size: 5rem;
+      }
+      #message {
+        font-size: 1rem;
+      }
+      #finalMessage {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="day29">Day 29</div>
+  <h1>Tap to Feel the Heartbeat 💗</h1>
+  <div id="heart">❤️</div>
+  <div id="message"></div>
+  <div id="finalMessage">Boom 💥 You stole my heartbeat! 😚</div>
+  <button id="backButton" onclick="history.back()">⬅️ Back</button>
+
+  <script>
+    const heart = document.getElementById('heart');
+    const message = document.getElementById('message');
+    const finalMessage = document.getElementById('finalMessage');
+    let clickCount = 0;
+
+    const messages = [
+      "Oof... That made my heart race! 💘",
+      "Again? You're dangerous! 😉",
+      "Why is it beating faster now? 💓",
+      "Stoppp I'm melting 🫠",
+      "I swear it skipped a beat 😳",
+      "That was the last one... 💥"
+    ];
+
+    heart.addEventListener('click', () => {
+      if (clickCount < messages.length - 1) {
+        message.innerText = messages[clickCount];
+        clickCount++;
+      } else if (clickCount === messages.length - 1) {
+        // Final tap: make heart burst
+        heart.innerText = "💥";
+        message.innerText = "";
+        finalMessage.style.display = "block";
+        clickCount++;
+      } else {
+        // Do nothing after heart burst
+        message.innerText = "";
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

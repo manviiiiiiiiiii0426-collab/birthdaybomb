@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌙 13 Moons of Us</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000 100%);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2.2em;
+      color: #fdd9ff;
+      text-shadow: 0 0 15px #ff99ff;
+      text-align: center;
+    }
+
+    .moon-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1000px;
+    }
+
+    .moon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fefefe 30%, #d1d1d1 70%);
+      box-shadow: 0 0 15px #ffffff99;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+
+    .moon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #ffffffcc;
+    }
+
+    .message-box {
+      margin-top: 30px;
+      max-width: 700px;
+      text-align: center;
+      font-size: 1.2em;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid #ffffff33;
+      box-shadow: 0 0 10px #ffffff22;
+      display: none;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      opacity: 0.2;
+    }
+
+    @media (max-width: 600px) {
+      .moon {
+        width: 60px;
+        height: 60px;
+      }
+
+      .message-box {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <h1>🌙 13 Moons of Us</h1>
+
+  <div class="moon-container">
+    <!-- 13 moons -->
+    <div class="moon" onclick="showMessage(0)"></div>
+    <div class="moon" onclick="showMessage(1)"></div>
+    <div class="moon" onclick="showMessage(2)"></div>
+    <div class="moon" onclick="showMessage(3)"></div>
+    <div class="moon" onclick="showMessage(4)"></div>
+    <div class="moon" onclick="showMessage(5)"></div>
+    <div class="moon" onclick="showMessage(6)"></div>
+    <div class="moon" onclick="showMessage(7)"></div>
+    <div class="moon" onclick="showMessage(8)"></div>
+    <div class="moon" onclick="showMessage(9)"></div>
+    <div class="moon" onclick="showMessage(10)"></div>
+    <div class="moon" onclick="showMessage(11)"></div>
+    <div class="moon" onclick="showMessage(12)"></div>
+  </div>
+
+  <div class="message-box" id="messageBox">Click a moon to reveal a message 🌙</div>
+
+  <script>
+    const messages = [
+      "1️⃣ You light up my nights like the full moon 🌕",
+      "2️⃣ With you, every dark moment feels a little brighter 💫",
+      "3️⃣ Your smile is my favorite phase of the moon 🌝",
+      "4️⃣ I love how you orbit my world and keep me grounded 🪐",
+      "5️⃣ Every time I see the moon, I think of you 🩵",
+      "6️⃣ You’re the calm in my cosmic chaos 🌌",
+      "7️⃣ Even when you're far, your presence shines like moonlight ✨",
+      "8️⃣ You pull my heart like the moon pulls the tides 🌊",
+      "9️⃣ There are 13 moons, but only one you 🌙",
+      "🔟 You’re magical. Mysterious. Mine. 💘",
+      "11️⃣ I’d watch a thousand moons rise with you 🌔",
+      "12️⃣ You complete my universe 🌎 + 🌕 = 💕",
+      "13️⃣ I love you to the moon… and all the way back again 🚀"
+    ];
+
+    function showMessage(index) {
+      const box = document.getElementById("messageBox");
+      box.style.display = "block";
+      box.innerHTML = messages[index];
+    }
+  </script>
+</body>
+</html>
+

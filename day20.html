@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 20 – Love Ladder Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #b5fffc, #ffdee9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin: 20px 10px 10px;
+      font-size: 1.8em;
+      color: #cc0066;
+      text-align: center;
+      text-shadow: 0 0 3px #fff;
+    }
+
+    .ladder-container {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      overflow-y: auto;
+      padding: 10px 0;
+    }
+
+    .ladder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .rung {
+      width: 100%;
+      padding: 12px;
+      background-color: #ffffff;
+      border: 2px dashed #cc0066;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .rung:hover {
+      background-color: #ffe0f0;
+      transform: scale(1.03);
+    }
+
+    .rung.correct {
+      background-color: #c6ffe6;
+      color: #006633;
+      border-color: #00aa77;
+    }
+
+    .rung.wrong {
+      background-color: #ffd1d1;
+      color: #a10000;
+      border-color: #ff6666;
+    }
+
+    #finalMessage {
+      font-size: 1.2em;
+      color: #cc0066;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+      max-width: 90%;
+      margin: 10px 15px;
+    }
+
+    .back-btn {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #cc0066;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background-color: #a6004d;
+    }
+
+    @media (max-width: 480px) {
+      .rung {
+        width: 85%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>💗 Day 20 – Climb the Secret Ladder!</h1>
+
+  <div class="ladder-container">
+    <div class="ladder" id="ladder">
+      <!-- JavaScript will insert ladder rungs here -->
+    </div>
+  </div>
+
+  <div id="finalMessage">You made it to my heart ❤️</div>
+
+  <a href="index.html">
+    <button class="back-btn">⬅ Back</button>
+  </a>
+
+  <script>
+    const rungData = [
+      { message: "Oops! Not this one, but I still like you.", correct: false },
+      { message: "You're honestly extra cute on most days.", correct: true },
+      { message: "Oops! Not this one 😛", correct: false },
+      { message: "You’re charming. It’s annoying.", correct: true },
+      { message: "Oops! You slipped 😅", correct: false },
+      { message: "Getting warmer…", correct: true },
+      { message: "Oops! Not this one either.", correct: false },
+      { message: "One more step closer to the secret...", correct: true },
+      { message: "Oops! Wrong rung!", correct: false },
+      { message: "Yes! That smile? It’s illegal.", correct: true }
+    ];
+
+    const ladder = document.getElementById('ladder');
+    const finalMessage = document.getElementById('finalMessage');
+    let correctClicks = 0;
+
+    rungData.forEach((data, index) => {
+      const rung = document.createElement('div');
+      rung.classList.add('rung');
+      rung.textContent = `Step ${index + 1}`;
+      rung.addEventListener('click', () => {
+        rung.textContent = data.message;
+
+        if (data.correct) {
+          rung.classList.add('correct');
+          correctClicks++;
+        } else {
+          rung.classList.add('wrong');
+        }
+
+        rung.style.pointerEvents = 'none';
+
+        if (correctClicks === 5) {
+          finalMessage.style.opacity = 1;
+        }
+      });
+
+      ladder.appendChild(rung);
+    });
+  </script>
+</body>
+</html>
+
+

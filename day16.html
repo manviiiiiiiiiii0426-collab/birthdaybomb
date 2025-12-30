@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 16 – Mirror Mirror</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .header {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #fff;
+      z-index: 20;
+    }
+
+    .header h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      color: #ff99cc;
+    }
+
+    .header p {
+      font-size: 1.2em;
+      color: #ffe4f0;
+    }
+
+    .message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ffffff;
+      text-align: center;
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 2s ease;
+      max-width: 80%;
+    }
+
+    .message h2 {
+      font-size: 1.8em;
+      text-shadow: 0 0 8px #ff99cc;
+    }
+
+    .message p {
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #ffe4f0;
+    }
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.imgur.com/VX1bELK.jpg') center/cover no-repeat;
+      filter: blur(8px);
+    }
+
+    .back-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #ff3399;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 20;
+    }
+
+    .back-btn:hover {
+      background-color: #ff0066;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg"></div>
+
+  <div class="header">
+    <h1>Day 16 Already??</h1>
+    <p>This is fogged!! Clear it to see the message</p>
+  </div>
+
+  <div class="message" id="finalMessage">
+    <h2>Mirror mirror... what do I see?</h2>
+    <p>Someone who makes me smile way too easily. 😌</p>
+    <p>...Even the fog knows you’re kind of hard to ignore.</p>
+  </div>
+
+  <button class="back-btn" onclick="location.href='index.html'">⬅ Back</button>
+  
+  <canvas id="fogCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById("fogCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    ctx.fillStyle = "rgba(200, 200, 200, 0.9)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    let isDrawing = false;
+
+    function clearCircle(x, y) {
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 40, 0, Math.PI * 2, false);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    canvas.addEventListener('mousedown', () => isDrawing = true);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseleave', () => isDrawing = false);
+    canvas.addEventListener('mousemove', e => {
+      if (!isDrawing) return;
+      clearCircle(e.clientX, e.clientY);
+      checkReveal();
+    });
+
+    canvas.addEventListener('touchstart', () => isDrawing = true);
+    canvas.addEventListener('touchend', () => isDrawing = false);
+    canvas.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      clearCircle(touch.clientX, touch.clientY);
+      checkReveal();
+    }, { passive: false });
+
+    function checkReveal() {
+      const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      let cleared = 0;
+
+      for (let i = 3; i < pixels.length; i += 4) {
+        if (pixels[i] === 0) cleared++;
+      }
+
+      const percentCleared = cleared / (pixels.length / 4) * 100;
+      if (percentCleared > 40) {
+        document.getElementById("finalMessage").style.opacity = 1;
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      ctx.fillStyle = "rgba(200, 200, 200, 0.9)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    });
+  </script>
+</body>
+</html>
+

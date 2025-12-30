@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 11 – 27 Secret Reasons</title>
+  <style>
+    body {
+      background-color: #fff4f8;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px 20px;
+      text-align: center;
+      color: #ff4081;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    #progress {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .reason-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .reason-btn {
+      background-color: #ffc0cb;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
+
+    .reason-btn:hover {
+      background-color: #ff99aa;
+    }
+
+    .reason-btn.unlocked {
+      background-color: #c8e6c9 !important;
+      color: #2e7d32;
+    }
+
+    .revealed {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #444;
+      background: #f0f0f0;
+      padding: 8px 10px;
+      border-radius: 8px;
+      width: 100%;
+    }
+
+    .modal, .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: left;
+      width: 90%;
+      max-width: 400px;
+      color: #333;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      color: #ff4081;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 8px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 12px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #888;
+      cursor: pointer;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #ffc0cb;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .back-btn:hover {
+      background-color: #ff99aa;
+    }
+
+    .reset-btn {
+      background-color: #f8d7da;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💖 27 Reasons Why You're My Favourite Human</h1>
+  <p id="progress">Progress: 0 / 27 reasons unlocked</p>
+
+  <div class="reasons-grid" id="reasonsGrid"></div>
+
+  <!-- Modal -->
+  <div class="overlay" id="overlay"></div>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <h2 id="modalTitle"></h2>
+      <div class="hint" id="hintText"></div>
+      <input type="text" id="passInput" placeholder="Enter passcode" />
+      <button class="reason-btn" onclick="checkPass()">Unlock</button>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <button class="back-btn" onclick="window.location.href='index.html'">← Back to Main</button>
+  <button class="back-btn reset-btn" onclick="resetProgress()">🔁 Reset Progress</button>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    const reasons = [
+      "You laugh at your own jokes and it's the cutest thing.",
+      "Your hugs fix everything.",
+      "You make bad days feel okay.",
+      "You always say 'sorry' even when it's not your fault.",
+      "You care so much, it melts me.",
+      "You look like a cinnamon bun when you're sleepy.",
+      "You say weird things and I love them.",
+      "You always check if I ate.",
+      "You’re so thoughtful even when you're tired.",
+      "You smell like home.",
+      "You make silence feel peaceful.",
+      "You’re the only one who gets my memes.",
+      "You make me feel safe just by existing.",
+      "You never let me go to sleep upset.",
+      "You say the sweetest random things.",
+      "You're my personal sunshine.",
+      "Your voice makes everything better.",
+      "You still remember the tiniest things I say.",
+      "You share your food with me (even fries!).",
+      "You’re softer than the softest teddy.",
+      "You hold my hand like you mean it.",
+      "You let me be weird and love me more for it.",
+      "You call me cute even when I’m a mess.",
+      "You trust me with your thoughts.",
+      "You love me like I’m magic.",
+      "You look at me like I’m everything.",
+      "You’re you. And that’s my favourite reason."
+    ];
+
+    const passcodeOdd = "buddhu";
+    const passcodeEven = "sunni";
+
+    const hintOdd = "Hint: I have saved it as your contact name.";
+    const hintEven = "Hint: s _ _ _ i";
+
+    let currentSet = null;
+    let currentIndex = null;
+
+    const grid = document.getElementById("reasonsGrid");
+    const modal = document.getElementById("modal");
+    const overlay = document.getElementById("overlay");
+    const passInput = document.getElementById("passInput");
+    const hintText = document.getElementById("hintText");
+    const modalTitle = document.getElementById("modalTitle");
+    const progressEl = document.getElementById("progress");
+
+    let unlockedReasons = JSON.parse(localStorage.getItem('unlockedReasons')) || [];
+
+    function buildGrid() {
+      grid.innerHTML = "";
+      reasons.forEach((reason, i) => {
+        const container = document.createElement("div");
+        container.className = "reason-container";
+
+        const btn = document.createElement("button");
+        btn.className = "reason-btn";
+        btn.innerText = unlockedReasons.includes(i) ? `✅ Reason ${i + 1}` : `Reason ${i + 1}`;
+        btn.dataset.index = i;
+
+        const revealed = document.createElement("div");
+        revealed.className = "revealed";
+        revealed.innerText = reason;
+        revealed.style.display = "none";
+
+        if (unlockedReasons.includes(i)) {
+          btn.classList.add("unlocked");
+          btn.onclick = () => {
+            revealed.style.display = revealed.style.display === "none" ? "block" : "none";
+          };
+        } else {
+          btn.onclick = () => openModal(i);
+        }
+
+        container.appendChild(btn);
+        container.appendChild(revealed);
+        grid.appendChild(container);
+      });
+      updateProgress();
+    }
+
+    function openModal(index) {
+      currentIndex = index;
+      currentSet = (index + 1) % 2 === 0 ? "even" : "odd";
+
+      modalTitle.innerText = currentSet === "odd"
+        ? "What's the name I call you the most?"
+        : "What's the name you call me the most?";
+      hintText.innerText = currentSet === "odd" ? hintOdd : hintEven;
+
+      passInput.value = "";
+      modal.style.display = "flex";
+      overlay.style.display = "block";
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+      overlay.style.display = "none";
+    }
+
+    function checkPass() {
+      const input = passInput.value.trim().toLowerCase();
+      const correct = currentSet === "odd" ? passcodeOdd : passcodeEven;
+
+      if (input === correct) {
+        for (let i = 0; i < reasons.length; i++) {
+          const isCurrentSet = ((i + 1) % 2 === 1 && currentSet === "odd") || ((i + 1) % 2 === 0 && currentSet === "even");
+          if (isCurrentSet && !unlockedReasons.includes(i)) {
+            unlockedReasons.push(i);
+          }
+        }
+        localStorage.setItem("unlockedReasons", JSON.stringify(unlockedReasons));
+
+        confetti({ particleCount: 150, spread: 80, origin: { y: 0.4 } });
+
+        setTimeout(() => {
+          closeModal();
+          buildGrid();
+        }, 1200);
+      } else {
+        hintText.innerText = "Nope! Try again 😛";
+      }
+    }
+
+    function updateProgress() {
+      progressEl.textContent = `Progress: ${unlockedReasons.length} / ${reasons.length} reasons unlocked`;
+    }
+
+    function resetProgress() {
+      if (confirm("Are you sure you want to reset all progress?")) {
+        localStorage.removeItem("unlockedReasons");
+        unlockedReasons = [];
+        buildGrid();
+      }
+    }
+
+    buildGrid();
+  </script>
+
+</body>
+</html>
+
+
+
+

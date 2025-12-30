@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 9 – Love Passport</title>
+  <style>
+    body {
+      background-color: #ffe4f2;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 30px;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #ff4081;
+      margin-bottom: 25px;
+    }
+
+    .passport-book {
+      background: #fffafc;
+      border: 4px solid #ffb6d9;
+      border-radius: 15px;
+      padding: 30px 20px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .passport-page {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stamp {
+      background: #ffe6f0;
+      border: 2px dashed #ff69b4;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 1rem;
+      color: #c2185b;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s;
+      box-shadow: 2px 3px 6px rgba(0,0,0,0.1);
+    }
+
+    .stamp:hover {
+      background-color: #ffd6eb;
+      transform: scale(1.05);
+    }
+
+    .message-box {
+      background-color: #fff;
+      border: 2px solid #f48fb1;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 1.1rem;
+      color: #6a1b9a;
+      min-height: 60px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-btn:hover {
+      background-color: #e91e63;
+    }
+  </style>
+</head>
+<body>
+  <h1>✈️ Day 9 – Love Passport 💌</h1>
+  
+  <div class="passport-book">
+    <div class="passport-page">
+      <button class="stamp" data-msg="📍 It was interesting. the 3.4 ka drop was epic indeed.">📍 First Talk</button>
+      <button class="stamp" data-msg="😏Spoiler: You kinda nailed it.">💡First Impression</button>
+      <button class="stamp" data-msg="🎂 This birthday adds another wrinkle on your face. YOU'RE OLD AYANNNN!!!">🎉 Birthday Visa</button>
+      <button class="stamp" data-msg="🔐 Secret: I kinda look forward to your messages more than I should 😳">🛂 Secret fact </button>
+      <button class="stamp" data-msg="😴 If you show up in my dreams again, I’m charging rent ">😴Dream access</button>
+      
+      <div class="message-box" id="messageBox">
+      ✨ Click a stamp to reveal a message ✨
+    </div>
+  </div>
+
+  <br />
+  <a href="index.html">
+    <button class="back-btn">⬅ Back</button>
+  </a>
+
+  <script>
+    const stamps = document.querySelectorAll('.stamp');
+    const messageBox = document.getElementById('messageBox');
+
+    stamps.forEach(stamp => {
+      stamp.addEventListener('click', () => {
+        const message = stamp.getAttribute('data-msg');
+        messageBox.textContent = message;
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

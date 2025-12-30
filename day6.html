@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 6 – Choose Your Adventure</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body class="day6-theme">
+  <h1 class="title-glow">🌟 Day 6 – Choose Your Adventure</h1>
+  <p class="subtitle">Pick a magical door and reveal your surprise 💫</p>
+
+  <div class="door-container">
+    <div class="door" onclick="revealMessage(1)">
+      <div class="door-front">🚪</div>
+      <div class="door-back">🎉</div>
+    </div>
+    <div class="door" onclick="revealMessage(2)">
+      <div class="door-front">🚪</div>
+      <div class="door-back">💌</div>
+    </div>
+    <div class="door" onclick="revealMessage(3)">
+      <div class="door-front">🚪</div>
+      <div class="door-back">🌠</div>
+    </div>
+  </div>
+
+  <div class="message-box" id="messageBox"></div>
+
+  <audio id="revealSound" src="assets/pop.mp3" preload="auto"></audio>
+
+  <a href="index.html">
+    <button class="back-btn">⬅ Back</button>
+  </a>
+
+  <script src="day6.js"></script>
+</body>
+</html>
+

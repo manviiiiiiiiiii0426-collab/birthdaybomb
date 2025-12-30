@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 28 – Snow Globe of Memories</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.8em;
+      color: #d2b4f8;
+    }
+
+    .globe-container {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(#444, #222);
+      margin-top: 30px;
+      overflow: hidden;
+      border: 4px solid #aaa;
+    }
+
+    .snow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 250px;
+      pointer-events: none;
+    }
+
+    .flake {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(250px); }
+    }
+
+    #drop-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ffffff22;
+      color: #fff;
+      font-size: 1em;
+      border: 1px solid #aaa;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #drop-button:hover {
+      background: #ffffff55;
+    }
+
+    .star {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      font-size: 24px;
+      transform: translateX(-50%);
+      animation: starDrop 2s linear forwards;
+    }
+
+    @keyframes starDrop {
+      0% { top: 0; }
+      100% { top: 220px; }
+    }
+
+    #message-box {
+      margin-top: 20px;
+      text-align: center;
+      color: #ffec90;
+      font-size: 1.2em;
+      min-height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Day 28 it is... Happy happy birthday... Ayan 🎉</h1>
+
+  <div class="globe-container" id="globe">
+    <div class="snow" id="snow"></div>
+  </div>
+
+  <button id="drop-button">Click here</button>
+  <div id="message-box"></div>
+
+  <script>
+    // ❄️ Snowflakes
+    const snowContainer = document.getElementById('snow');
+    for (let i = 0; i < 100; i++) {
+      const flake = document.createElement('div');
+      flake.className = 'flake';
+      const size = Math.random() * 2 + 1;
+      flake.style.width = `${size}px`;
+      flake.style.height = `${size}px`;
+      flake.style.left = `${Math.random() * 250}px`;
+      flake.style.top = `${Math.random() * 250}px`;
+      flake.style.animationDuration = `${Math.random() * 4 + 2}s`;
+      snowContainer.appendChild(flake);
+    }
+
+    // 🌟 Star Drop
+    const button = document.getElementById('drop-button');
+    const globe = document.getElementById('globe');
+    const messageBox = document.getElementById('message-box');
+
+    const messages = [
+      "This is our little world ✨",
+      "You're the sparkle to my snow globe 💫",
+      "Every click is a wish from me to you 🎈",
+      "We’re magical together 🪄",
+      "This love is handpicked and handwritten 💌",
+      "Floating through memories with you ❤️",
+      "You’re my favorite season 🌨️",
+      "Cold nights, warm hearts 💖",
+      "You complete my universe 🌍",
+      "Forever your biggest fan ⭐"
+    ];
+    let messageIndex = 0;
+
+    button.addEventListener('click', () => {
+      if (messageIndex >= messages.length) {
+        messageBox.innerText = "All stars revealed! 🌟";
+        return;
+      }
+
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.textContent = '⭐';
+      globe.appendChild(star);
+
+      setTimeout(() => {
+        star.remove();
+        messageBox.innerText = messages[messageIndex];
+        messageIndex++;
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
