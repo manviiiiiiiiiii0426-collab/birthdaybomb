@@ -1,9 +1,9 @@
 const messages = [
   "You're amazing!",
   "Happiest 27th!",
-  "You make my day brighter!",
+  "You're hot and sexy but i miss the cute youuuuu!",
   "Budhhu, you're the best!",
-  "Surprise! More love coming!",
+  "Surprise! More pages coming!",
   "31 days won't be enough!"
 ];
 

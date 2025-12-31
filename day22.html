@@ -90,6 +90,7 @@
 </head>
 <body>
   <h1>🔐 Day 22 – Secret Code Time</h1>
+  <p>Enter the secret code to unlock the message: hint it's the numerical part of your email</p>
   <input type="password" id="codeInput" placeholder="Enter your code..."/>
   <br/>
   <button onclick="checkCode()">Unlock</button>
@@ -97,13 +98,13 @@
 
   <div class="success" id="successMessage">
     <h2>🎉 You did it!</h2>
-    <p>Of course you'd remember. You always surprise me ❤️</p>
+    <p>Of course you'd remember. congratsssss happpyyyy birthdayyyyy buddhuuuuu ❤️</p>
   </div>
 
   <button class="back-btn" onclick="location.href='index.html'">⬅ Back</button>
 
   <script>
-    const correctCode = "0722"; // change to anything
+    const correctCode = "17997"; // change to anything
     function checkCode() {
       const input = document.getElementById("codeInput").value.trim();
       const errorMsg = document.getElementById("errorMsg");

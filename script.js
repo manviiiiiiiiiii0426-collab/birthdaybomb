@@ -1,12 +1,12 @@
 const compliments = [
-  "You're the secret cheat code to my heart. 💘",
+  "You're the cutest rasgulla i've ever known. 💘",
   "Your smile has better pixels than 4K! 😁",
   "You're rarer than a shiny Pokémon. ✨",
-  "You + me = high score. 🕹️",
-  "You're the player 1 to my player 2. 🎮",
+  "You + your laptops = best couple. 🕹️",
+  "You're the most dramatic kind i have ever known and that's the best. 🎮",
   "If I had to choose a power-up, I'd choose YOU. 💥",
-  "You're better than unlimited lives. ❤️",
-  "You're my favorite mission... forever. 🚀",
+  "You're better when you are less cranky. ❤️",
+  "You're my favorite NRI dumbo.... 🚀",
 ];
 
 let index = 0;

@@ -5,9 +5,9 @@ But I couldn’t let the month go by without making you smile.
 
 Each day, I’ll reveal just a little more about how special you are.
 
-Happy Day 4, my favorite buddhu hooman. 💌
+Happy Day 4, cutie buddhu hooman. 💌
 
-— Your Secret Birthday wisher ✨`;
+— Your Sadu Birthday wisher ✨`;
 
 let i = 0;
 const speed = 50;

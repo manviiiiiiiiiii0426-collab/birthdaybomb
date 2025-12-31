@@ -1,7 +1,7 @@
 const messages = {
   1: "🎉 You opened the Party Door! Let's celebrate the most special soul ever — YOU!",
-  2: "💌 You opened the Love Letter Door... If I could write a letter for every reason I adore you, the world would run out of ink.",
-  3: "🌠 You picked the Starry Door... I wished for someone magical — and the universe gave me *you*."
+  2: "💌 You opened the Love Letter Door... this reminds me of how many girls are crazy about you, do you feel blessed??",
+  3: "🌠 You picked the Starry Door... I wished for someone magical — but the universe gave me *you*."
 };
 
 function revealMessage(doorNumber) {

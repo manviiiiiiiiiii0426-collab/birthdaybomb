@@ -1,12 +1,13 @@
 const sky = document.getElementById("sky");
 
 const messages = [
-  "You light up my world 💫",
-  "Your smile makes everything better 🥰",
+  "i miss the chalant you, ayan 💫",
+  "Your tantrum makes everything better 🥰",
   "You're the reason this month is magical ✨",
   "I adore your goofy face 😋",
-  "You're my favorite person in every galaxy 🌌",
-  "Buddhu, but MY Buddhu 💖"
+  "You're my favorite buddhu in every galaxy 🌌",
+  "Buddhu, but iitian buddhu 💖"
+  "Ab gussa mat hona, i was just kidding. "
 ];
 
 function createStar(index) {
